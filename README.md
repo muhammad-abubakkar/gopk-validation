@@ -1,5 +1,11 @@
 ### Used this library to validate structs in golang
 Inspired by PHP laravel framework
+
+#### Installation
+```shell script
+go get github.com/muhammad-abubakkar/gopk-validation
+```
+#### Basic Usage
 ```go
 package main
 
