@@ -11,6 +11,7 @@ func init() {
 		"min":       test.Min{},
 		"len":       test.Len{},
 		"alpha_num": test.AlphaNum{},
+		"match":     test.Match{},
 	}
 }
 

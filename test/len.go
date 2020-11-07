@@ -3,12 +3,13 @@ package test
 import (
 	"errors"
 	"fmt"
+	"reflect"
 	"strconv"
 )
 
 type Len struct {}
 
-func (an Len) Test(value string, args []string) error {
+func (an Len) Test(value string, args []string, values reflect.Value) error {
 	if len(args) == 0 {
 		return errors.New("len arg not provided")
 	}

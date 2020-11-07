@@ -3,12 +3,13 @@ package test
 import (
 	"errors"
 	"fmt"
+	"reflect"
 	"strconv"
 )
 
 type Min struct {}
 
-func (an Min) Test(value string, args []string) error {
+func (an Min) Test(value string, args []string, values reflect.Value) error {
 	if len(args) == 0 {
 		return errors.New("min arg not provided")
 	}

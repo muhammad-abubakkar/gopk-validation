@@ -7,16 +7,16 @@ import (
 	"strings"
 )
 
-func runTest(testName, value string, args []string, dataValues reflect.Value) error {
+func runTest(testName, value string, args []string, values reflect.Value) error {
 	if tester, ok := allTests[testName]; ok {
-		return tester.Test(value, args)
+		return tester.Test(value, args, values)
 	}
 	return nil
 }
 
 func Validate(data interface{}) (test.ErrorBag, error) {
 	dataErrors := test.ErrorBag{}
-	dataValues := reflect.ValueOf(data)
+	values := reflect.ValueOf(data)
 	dataType := reflect.TypeOf(data)
 
 	if dataType.Kind() != reflect.Struct {
@@ -28,7 +28,7 @@ func Validate(data interface{}) (test.ErrorBag, error) {
 	for i := 0; i < nFields; i++ {
 		field := dataType.Field(i)
 		name := field.Name
-		value := dataValues.Field(i)
+		value := values.Field(i)
 		fName := field.Tag.Get("name")
 		rules := field.Tag.Get("tests")
 
@@ -48,7 +48,7 @@ func Validate(data interface{}) (test.ErrorBag, error) {
 			if len(rule) > 1 {
 				ruleArgs = strings.Split(rule[1], ",")
 			}
-			err := runTest(ruleName, value.String(), ruleArgs, dataValues)
+			err := runTest(ruleName, value.String(), ruleArgs, values)
 			if err != nil {
 				errs := dataErrors[name]
 				dataErrors[name] = append(errs, err.Error())

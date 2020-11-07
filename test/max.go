@@ -3,12 +3,13 @@ package test
 import (
 	"errors"
 	"fmt"
+	"reflect"
 	"strconv"
 )
 
 type Max struct {}
 
-func (an Max) Test(value string, args []string) error {
+func (an Max) Test(value string, args []string, values reflect.Value) error {
 	if len(args) == 0 {
 		return errors.New("max arg not provided")
 	}
