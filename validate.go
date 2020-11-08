@@ -39,7 +39,6 @@ func Validate(data interface{}) (test.ErrorBag, error) {
 		if jName != "" {
 			name = jName
 		}
-
 		segments := strings.Split(rules, "|")
 		for _, segment := range segments {
 			rule := strings.Split(segment, ":")
