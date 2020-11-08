@@ -29,15 +29,15 @@ func Validate(data interface{}) (test.ErrorBag, error) {
 		field := dataType.Field(i)
 		name := field.Name
 		value := values.Field(i)
-		fName := field.Tag.Get("name")
+		jName := field.Tag.Get("json")
 		rules := field.Tag.Get("tests")
 
 		if rules == "" {
 			continue
 		}
 
-		if fName != "" {
-			name = fName
+		if jName != "" {
+			name = jName
 		}
 
 		segments := strings.Split(rules, "|")
